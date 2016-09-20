@@ -1,0 +1,23 @@
+DEPENDENCIES
+  custom_mysql
+    path: .
+    metadata: true
+
+GRAPH
+  apt (4.0.2)
+    compat_resource (>= 12.10)
+  chef-sugar (3.4.0)
+  compat_resource (12.14.5)
+  custom_mysql (0.1.0)
+    mysql-multi (~> 1.4.3)
+  mysql (5.6.3)
+    yum-mysql-community (>= 0.0.0)
+  mysql-multi (1.4.3)
+    apt (>= 0.0.0)
+    chef-sugar (>= 0.0.0)
+    mysql (~> 5.0)
+    openssl (>= 0.0.0)
+  openssl (6.0.0)
+  yum (4.0.0)
+  yum-mysql-community (1.0.0)
+    yum (>= 3.2)

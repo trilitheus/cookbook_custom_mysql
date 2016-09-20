@@ -5,3 +5,5 @@ license 'all_rights'
 description 'Installs/Configures custom_mysql'
 long_description 'Installs/Configures custom_mysql'
 version '0.1.0'
+
+depends 'mysql-multi', '~> 1.4.3'
