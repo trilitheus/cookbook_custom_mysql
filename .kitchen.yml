@@ -18,7 +18,23 @@ platforms:
       box_url: ~/packer_vbox_builds/packer_centos7_virtualbox.box
 
 suites:
-  - name: default
+  - name: primary
     run_list:
       - recipe[custom_mysql::default]
+      - recipe[mysql-multi::mysql_master]
     attributes:
+      mysql-multi:
+        slaves: ['33.33.33.72']
+    driver_config:
+      network:
+        - ['private_network', {ip: '33.33.33.71'}]
+  - name: backup
+    run_list:
+      - recipe[custom_mysql::default]
+      - recipe[mysql-multi::mysql_slave]
+    attributes:
+      mysql-multi:
+        master: ['33.33.33.71']
+    driver_config:
+      network:
+        - ['private_network', {ip: '33.33.33.72'}]
