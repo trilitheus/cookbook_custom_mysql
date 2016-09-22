@@ -14,3 +14,8 @@ d.group('mysql')
 t = resources(template: '/etc/mysql/conf.d/my.cnf')
 t.owner('mysql')
 t.group('mysql')
+
+firewalld_service 'mysql'
+
+include_recipe 'mysql-multi::mysql-master' if node.roles.include('mysql-primary')
+include_recipe 'mysql-multi::mysql-slave' if node.roles.include('mysql-backup')

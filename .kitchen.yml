@@ -21,7 +21,7 @@ suites:
   - name: primary
     run_list:
       - recipe[custom_mysql::default]
-      - recipe[mysql-multi::mysql_master]
+      - role[mysql-primary]
     attributes:
       mysql-multi:
         slaves: ['33.33.33.72']
@@ -31,7 +31,7 @@ suites:
   - name: backup
     run_list:
       - recipe[custom_mysql::default]
-      - recipe[mysql-multi::mysql_slave]
+      - role[mysql-backup]
     attributes:
       mysql-multi:
         master: ['33.33.33.71']
