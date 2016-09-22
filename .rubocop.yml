@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - '.kitchen/**/*'
+    - 'vendor/**/*'
+Metrics/LineLength:
+  Enabled: false
+Style/HashSyntax:
+  Enabled: false
+ParenthesesAsGroupedExpression:
+  Enabled: false
