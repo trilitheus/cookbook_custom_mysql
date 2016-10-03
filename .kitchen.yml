@@ -34,7 +34,7 @@ suites:
       - role[mysql-backup]
     attributes:
       mysql-multi:
-        master: ['33.33.33.71']
+        master: '33.33.33.71'
     driver_config:
       network:
         - ['private_network', {ip: '33.33.33.72'}]
