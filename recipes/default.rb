@@ -1,7 +1,7 @@
-if node['roles'].include? 'mysql_primary'
-  server_id = '1'
-elsif node['roles'].include? 'mysql_backup'
-  server_id = '2'
+if node['roles'].include? 'mysql-primary'
+  server_id = 1
+elsif node['roles'].include? 'mysql-backup'
+  server_id = 2
 end
 
 if 'kitchen'.include?(node.chef_environment)
@@ -31,7 +31,7 @@ d.group('mysql')
 t = resources(template: '/etc/mysql/conf.d/my.cnf')
 t.owner('mysql')
 t.group('mysql')
-t.variables(serverid: server_id.to_i,
+t.variables(serverid: server_id,
             cookbook_name: 'mysql-multi',
             bind_address: node['mysql-multi']['bind_ip'])
 
