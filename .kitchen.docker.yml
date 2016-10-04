@@ -1,0 +1,45 @@
+---
+driver:
+  name: dokken
+  chef_version: latest
+  privileged: true
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: centos-7
+    driver:
+      image: centos:7
+      intermediate_instructions:
+        - RUN yum clean all
+        - RUN yum -y install net-tools lsof
+      pid_one_command: /usr/lib/systemd/systemd
+
+suites:
+  - name: primary
+    run_list:
+      - recipe[custom_mysql::default]
+      - role[mysql-primary]
+    attributes:
+      mysql-multi:
+        slaves: ['33.33.33.72']
+    driver_config:
+      network:
+        - ['private_network', {ip: '33.33.33.71'}]
+  - name: backup
+    run_list:
+      - recipe[custom_mysql::default]
+      - role[mysql-backup]
+    attributes:
+      mysql-multi:
+        master: '33.33.33.71'
+    driver_config:
+      network:
+        - ['private_network', {ip: '33.33.33.72'}]
