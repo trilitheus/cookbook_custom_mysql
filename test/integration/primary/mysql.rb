@@ -1,5 +1,5 @@
 describe package('mysql-community-server') do
- it {should be_installed}
+  it { should be_installed }
 end
 
 describe service('mysqld') do
@@ -12,5 +12,5 @@ describe port(3306) do
 end
 
 describe file('/etc/mysql/conf.d/my.cnf') do
-  its('content') { should match /server-id = 1/ }
+  its('content') { should match(/server-id = 1/) }
 end
