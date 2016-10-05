@@ -35,7 +35,7 @@ t.variables(serverid: server_id,
             cookbook_name: 'mysql-multi',
             bind_address: node['mysql-multi']['bind_ip'])
 
-firewalld_service 'mysql'
+firewalld_service 'mysql' unless node['virtualization']['system'] == 'docker'
 
 if node.roles.include?('mysql-primary')
   include_recipe 'mysql-multi::mysql_master'
