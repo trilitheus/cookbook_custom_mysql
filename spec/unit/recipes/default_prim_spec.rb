@@ -13,6 +13,7 @@ describe 'custom_mysql::default' do
         node.automatic['os'] = 'linux'
         node.automatic['platform_family'] = 'rhel'
         node.chef_environment = 'kitchen'
+        node.automatic['virtualization']['system'] = 'vmware'
         server.create_environment('kitchen', default_attributes: { 'mysql-multi': { slaves: ['33.33.33.72'] } } )
         server.create_data_bag('mysql',
                                  'secrets' => {
